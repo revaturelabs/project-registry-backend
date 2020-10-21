@@ -1,27 +1,31 @@
 package com.revature.registry.model;
 
+import java.time.LocalDate;
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 import lombok.Data;
 
 @Entity
 @Data
-public class Account {
+public class Iteration {
 
 	@Id
 	@GeneratedValue
 	private int id;
+		
+	private int iterationCount;
+	private LocalDate start_date;
+	private LocalDate end_date;
 
-	private String username;
-
-	@ManyToOne
-	@JoinColumn(name = "role")
-	private Role role;
 	
-//	@ManyToOne
-//	private ProjectIteration projectIteration;
+	@ManyToOne
+	@JoinColumn(name = "project_id")
+	private Project project;
 }

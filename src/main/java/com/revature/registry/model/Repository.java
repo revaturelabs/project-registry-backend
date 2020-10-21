@@ -16,11 +16,11 @@ public class Repository {
 	@GeneratedValue
 	private int id;
 	
-//	private String name;
-//	private String url;
-//	
-//	@ManyToOne
-//	@JoinColumn(name="project")
-//	private Project project;
+	private String name;
+	private String url;
+	
+	@ManyToOne
+	@JoinColumn(name="project")
+	private Project project;
 
 }
