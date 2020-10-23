@@ -11,9 +11,13 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
 public class Project {
 	@Id
@@ -28,7 +32,7 @@ public class Project {
 	@JoinColumn(name="stack")
 	private Stack stack;
 	private String description;
-//	
+	
 	@ManyToOne
 	@JoinColumn(name="created_by")
 	private Account account;
@@ -42,7 +46,7 @@ public class Project {
 	@ManyToMany(fetch= FetchType.LAZY)
 	@JoinTable(name = "project_account_jt", 
 			joinColumns = {@JoinColumn(name = "project_id")},
-			inverseJoinColumns = {@JoinColumn(name = "acocount_id")})
+			inverseJoinColumns = {@JoinColumn(name = "account_id")})
 		private List<Account> accounts;
 
 }

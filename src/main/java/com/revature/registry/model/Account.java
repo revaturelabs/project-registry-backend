@@ -1,14 +1,20 @@
 package com.revature.registry.model;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
+@AllArgsConstructor
+@NoArgsConstructor
 @Data
 public class Account {
 
@@ -22,6 +28,7 @@ public class Account {
 	@JoinColumn(name = "role")
 	private Role role;
 	
-//	@ManyToOne
-//	private ProjectIteration projectIteration;
+	public Account(int id) {
+		this.id = id;
+	}
 }

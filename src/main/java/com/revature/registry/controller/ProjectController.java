@@ -25,7 +25,6 @@ public class ProjectController {
 	
 	@PostMapping("")
 	public Project postProject(@RequestBody Project project) {
-		System.out.println(project);
 		return projectService.saveProject(project);
 	}
 }
