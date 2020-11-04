@@ -1,9 +1,14 @@
 package com.revature.registry.controller;
 
-import static org.mockito.Mockito.*;
+import static org.hamcrest.CoreMatchers.isA;
+import static org.mockito.ArgumentMatchers.anyInt;
+import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+import java.util.List;
+
+import org.assertj.core.util.Lists;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -44,14 +49,38 @@ class ProjectControllerTest {
 
 	@Test
 	public void getAllProjectsReturnsData() throws Exception {
+
+		//mock the return of getAllProjects from ProjectService
+		
+		Project project1 = new Project();
+		project1.setId(12);
+		project1.setName("testProject1");
+		project1.setDescription("a project simply just for testing");
+		
+		Project project2 = new Project();
+		project2.setId(13);
+		project2.setName("testProject2");
+		project2.setDescription("a project simply just for testing");
+		
+		List<Project> projects = Lists.newArrayList(project1,project2);
+		
+		when(projectService.getAllProjects())
+			.thenReturn(new ResponseEntity<List<Project>>(projects, HttpStatus.OK));
+		
 		mockMvc.perform(get("/api/project"))
-			.andExpect(status().isOk());
+			.andExpect(status().isOk())
+			.andExpect(MockMvcResultMatchers.jsonPath("$.*", isA(List.class)))			
+			.andExpect(MockMvcResultMatchers.jsonPath("$[0].name").value("testProject1"))
+			.andExpect(MockMvcResultMatchers.jsonPath("$[1].name").value("testProject2"))
+			.andExpect(MockMvcResultMatchers.jsonPath("$[0].id").value(12))
+			.andExpect(MockMvcResultMatchers.jsonPath("$[1].id").value(13));
 		
 	}
 	
 	@Test
 	public void should_get_appropriate_project_when_12isInput() throws Exception {
-		//mock
+		
+		//mock the return of getProjectById from ProjectService
 		Project project = new Project();
 		project.setId(12);
 		project.setName("testProject");
@@ -60,19 +89,13 @@ class ProjectControllerTest {
 		when(projectService.getProjectById((anyInt())))
 		.thenReturn(new ResponseEntity<Project>(project,HttpStatus.OK));
 		
-
 		mockMvc.perform(get("/api/project/id/12"))
 			.andExpect(status().isOk())
 			.andExpect(MockMvcResultMatchers.jsonPath("$.name").value("testProject"))
 			.andExpect(MockMvcResultMatchers.jsonPath("$.id").value(12))
-			.andExpect(MockMvcResultMatchers.jsonPath("$.description").value("a project simply just for testing"))
-			;
+			.andExpect(MockMvcResultMatchers.jsonPath("$.description").value("a project simply just for testing"));
 	}
 	
-//	@Test
-//	public void should_CreateProject_When_ValidRequest() {
-//		when(projectService.createProject(any(Project.class))).thenReturn(new ResponseEntity<Project>());
-//	}
 	
 
 

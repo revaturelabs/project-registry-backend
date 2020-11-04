@@ -24,12 +24,7 @@ import com.revature.registry.service.ProjectService;
 public class ProjectController {
 	@Autowired
 	private ProjectService projectService;
-	
-//	@GetMapping("/hello")
-//	public String hello(){
-//		return "hello!";
-//	}
-	
+		
 	@GetMapping("")
 	public ResponseEntity<List<Project>> getAllProjects(){
 		return projectService.getAllProjects();
