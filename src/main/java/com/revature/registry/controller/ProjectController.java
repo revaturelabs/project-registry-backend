@@ -1,9 +1,11 @@
 package com.revature.registry.controller;
 
+
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,10 +20,15 @@ import com.revature.registry.model.Project;
 import com.revature.registry.service.ProjectService;
 
 @RestController
-@RequestMapping("/api/project")
+@RequestMapping(value = "/api/project", produces = MediaType.APPLICATION_JSON_VALUE)
 public class ProjectController {
 	@Autowired
 	private ProjectService projectService;
+	
+//	@GetMapping("/hello")
+//	public String hello(){
+//		return "hello!";
+//	}
 	
 	@GetMapping("")
 	public ResponseEntity<List<Project>> getAllProjects(){
@@ -32,7 +39,7 @@ public class ProjectController {
 	public ResponseEntity<Project> getProjectById(@PathVariable("id") int id){
 		return projectService.getProjectById(id);
 	}
-
+	
 	@PostMapping("")
 	public ResponseEntity<Project> createProject(@RequestBody Project project) {
 		return projectService.createProject(project);
