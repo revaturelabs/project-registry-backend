@@ -40,7 +40,7 @@ public class ProjectService {
 		return new ResponseEntity<Project>(savedProject, HttpStatus.CREATED);
 	}
 	
-	public ResponseEntity<Project> updateProject(int id, Project newProject) {
+	public ResponseEntity<Project> updateProjectById(int id, Project newProject) {
 		Optional<Project> project = projectRepository.findById(id);
 		if(project.isPresent()) {
 			newProject.setId(id);

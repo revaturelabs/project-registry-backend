@@ -128,7 +128,7 @@ class ProjectControllerTest {
 		project.setName("testProject");
 		project.setDescription("this has been updated");
 	 
-		when(projectService.updateProject(anyInt(), any(Project.class)))
+		when(projectService.updateProjectById(anyInt(), any(Project.class)))
 				.thenReturn(new ResponseEntity<Project>(project, HttpStatus.OK));
 		
 		//mock request to controller
@@ -146,6 +146,6 @@ class ProjectControllerTest {
 						.thenReturn(new ResponseEntity<Project>(HttpStatus.NO_CONTENT));
 		//mock request to controller
 		mockMvc.perform(delete("/api/project/id/12"))
-			.andExpect(status().isOk());
+			.andExpect(status().isNoContent());
 	}
 }
