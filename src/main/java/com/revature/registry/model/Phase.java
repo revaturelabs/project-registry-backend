@@ -11,12 +11,12 @@ import lombok.Data;
 @Entity
 @Data
 public class Phase {
-	@Id
-	@GeneratedValue
-	private int id;
-	
-	private String description;	
-	@ManyToOne
-	@JoinColumn(name = "belongs_to")
-	private Workflow workflow;
+    @Id
+    @GeneratedValue
+    private int id;
+
+    private String description;
+    @ManyToOne
+    @JoinColumn(name = "belongs_to")
+    private Workflow workflow;
 }

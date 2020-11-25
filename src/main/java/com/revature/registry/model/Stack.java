@@ -9,10 +9,10 @@ import lombok.Data;
 @Data
 @Entity
 public class Stack {
-	@Id
-	@GeneratedValue
-	private int id;
-	
-	private String name;	
+    @Id
+    @GeneratedValue
+    private int id;
+
+    private String name;
 
 }

@@ -11,15 +11,13 @@ import lombok.Data;
 @Entity
 @Data
 public class Workflow {
-	@Id
-	@GeneratedValue
-	private int id;
-	private String description;
-	
+    @Id
+    @GeneratedValue
+    private int id;
+    private String description;
 
-	@ManyToOne
-	@JoinColumn(name = "belongs_to")
-	private Account account;
-	
+    @ManyToOne
+    @JoinColumn(name = "belongs_to")
+    private Account account;
 
 }

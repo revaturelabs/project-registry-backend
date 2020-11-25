@@ -8,19 +8,18 @@ import javax.persistence.ManyToOne;
 
 import lombok.Data;
 
-
 @Entity
 @Data
 public class Repository {
-	@Id
-	@GeneratedValue
-	private int id;
-	
-	private String name;
-	private String url;
-	
-	@ManyToOne
-	@JoinColumn(name="project")
-	private Project project;
+    @Id
+    @GeneratedValue
+    private int id;
+
+    private String name;
+    private String url;
+
+    @ManyToOne
+    @JoinColumn(name = "project")
+    private Project project;
 
 }
