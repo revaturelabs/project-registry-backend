@@ -70,7 +70,12 @@
 				<artifactId>maven-checkstyle-plugin</artifactId>
 				<version>${checkstyle-maven-plugin.version}</version> <!-- Note use of property -->
 				<configuration>
-					<configLocation>rev_checks.xml</configLocation> <!-- Can vary based on the location on your machine -->
+					<configLocation>${basedir}/rev_checks.xml</configLocation> <!-- Can vary based on the location on your machine -->
+					<includeTestSourceDirectory>true</includeTestSourceDirectory>
+					<suppressionsLocation>suppressions.xml</suppressionsLocation>
+					<suppressionsFileExpression>checkstyle.suppressions.file</suppressionsFileExpression>
+					<consoleOutput>true</consoleOutput>
+					<propertyExpansion>checkstyle.config.path=${basedir}</propertyExpansion>
 					<encoding>UTF-8</encoding>
 					<consoleOutput>true</consoleOutput>
 					<failsOnError>true</failsOnError>
