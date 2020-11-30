@@ -32,7 +32,7 @@ class ProjectServiceTest {
     private ProjectRepository projectRepository;
 
     @Test
-    public void when_getProjectByID_return_correct_list() {
+    void when_getProjectByID_return_correct_list() {
         // mock the return of getAllProjects from ProjectRepository
 
         Project project1 = new Project();
@@ -56,7 +56,7 @@ class ProjectServiceTest {
     }
 
     @Test
-    public void when_getProjectByID_then_return_correct_project() {
+    void when_getProjectByID_then_return_correct_project() {
         // mock the return of getProjectById from ProjectRepository
 
         Project project = new Project();
@@ -73,7 +73,7 @@ class ProjectServiceTest {
     }
 
     @Test
-    public void when_getProjectByID_bad_id_then_return_bad_request() {
+    void when_getProjectByID_bad_id_then_return_bad_request() {
         // no need to mock anything since projectRepository.findById() will return an
         // empty optional
         ResponseEntity<Project> expected = new ResponseEntity<Project>(HttpStatus.BAD_REQUEST);
@@ -85,7 +85,7 @@ class ProjectServiceTest {
     }
 
     @Test
-    public void when_createProject_return_created_project() {
+    void when_createProject_return_created_project() {
         // mock the return of getProjectById from ProjectRepository
 
         Project project = new Project();
@@ -102,11 +102,11 @@ class ProjectServiceTest {
         input.setDescription("a project simply just for testing");
         ResponseEntity<Project> output = projectService.createProject(input);
         assertThat(output.getBody()).isEqualToComparingOnlyGivenFields(expected.getBody(), "name", "description");
-        assertThat(output.getBody().getId()).isNotEqualTo(0);
+        assertThat(output.getBody().getId()).isNotZero();
     }
 
     @Test
-    public void when_updateProjectByID_then_return_updated_project() {
+    void when_updateProjectByID_then_return_updated_project() {
         // mock the return of updateProjectById from ProjectRepository
 
         Project project = new Project();
@@ -129,7 +129,7 @@ class ProjectServiceTest {
     }
 
     @Test
-    public void when_updateProjectByID_and_id_invalid_then_return_updated_project() {
+    void when_updateProjectByID_and_id_invalid_then_return_updated_project() {
         // mock the return of updateProjectById from ProjectRepository
 
         Project project = new Project();
@@ -152,7 +152,7 @@ class ProjectServiceTest {
     }
 
     @Test
-    public void when_deleteProjectById_then_return_no_content() {
+    void when_deleteProjectById_then_return_no_content() {
         // mock the return of findById from ProjectRepository
 
         Project project = new Project();
@@ -171,7 +171,7 @@ class ProjectServiceTest {
     }
 
     @Test
-    public void when_deleteProjectByID_and_id_invalid_then_return_bad_request() {
+    void when_deleteProjectByID_and_id_invalid_then_return_bad_request() {
         // mock the return of updateProjectById from ProjectRepository
 
         Project project = new Project();
