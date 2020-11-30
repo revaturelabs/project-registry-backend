@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: project-registry-backend-deployment
+  labels:
+    app: project-registry-backend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: project-registry-backend
+  template:
+    metadata:
+      labels:
+        app: project-registry-backend
+    spec:
+      containers:
+      - name: project-registry-backend
+        image: project-registry-backend:latest
+        ports:
+        - containerPort: 8080
+        livenessProbe:
+          httpGet:
+            path: /api/project
+            port: 8080
+        startupProbe:
+          httpGet:
+            path: /api/project
+            port: 8080
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+      terminationGracePeriodSeconds: 30
