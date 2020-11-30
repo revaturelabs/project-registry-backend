@@ -1,7 +1,9 @@
 package com.revature.registry.controller;
 
-
 import java.util.List;
+
+import com.revature.registry.model.Project;
+import com.revature.registry.service.ProjectService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -15,37 +17,34 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.revature.registry.model.Project;
-import com.revature.registry.service.ProjectService;
-
 @RestController
 @RequestMapping(value = "/api/project", produces = MediaType.APPLICATION_JSON_VALUE)
 public class ProjectController {
-	@Autowired
-	private ProjectService projectService;
-		
-	@GetMapping("")
-	public ResponseEntity<List<Project>> getAllProjects(){
-		return projectService.getAllProjects();
-	}
-	
-	@GetMapping("/id/{id}")
-	public ResponseEntity<Project> getProjectById(@PathVariable("id") int id){
-		return projectService.getProjectById(id);
-	}
-	
-	@PostMapping("")
-	public ResponseEntity<Project> createProject(@RequestBody Project project) {
-		return projectService.createProject(project);
-	}
-	
-	@PutMapping("id/{id}")
-	public ResponseEntity<Project> updateProject(@PathVariable("id") int id, @RequestBody Project project) {
-		return projectService.updateProjectById(id, project);
-	}
-	
-	@DeleteMapping("id/{id}")
-	public ResponseEntity<Project> deleteUser(@PathVariable("id") int id) {
-		return projectService.deleteProjectById(id);
-	}
+    @Autowired
+    private ProjectService projectService;
+
+    @GetMapping("")
+    public ResponseEntity<List<Project>> getAllProjects() {
+        return projectService.getAllProjects();
+    }
+
+    @GetMapping("/id/{id}")
+    public ResponseEntity<Project> getProjectById(@PathVariable("id") int id) {
+        return projectService.getProjectById(id);
+    }
+
+    @PostMapping("")
+    public ResponseEntity<Project> createProject(@RequestBody Project project) {
+        return projectService.createProject(project);
+    }
+
+    @PutMapping("id/{id}")
+    public ResponseEntity<Project> updateProject(@PathVariable("id") int id, @RequestBody Project project) {
+        return projectService.updateProjectById(id, project);
+    }
+
+    @DeleteMapping("id/{id}")
+    public ResponseEntity<Project> deleteUser(@PathVariable("id") int id) {
+        return projectService.deleteProjectById(id);
+    }
 }

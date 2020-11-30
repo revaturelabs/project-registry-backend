@@ -16,17 +16,17 @@ import lombok.NoArgsConstructor;
 @Data
 public class Account {
 
-	@Id
-	@GeneratedValue
-	private int id;
+    @Id
+    @GeneratedValue
+    private int id;
 
-	private String username;
+    private String username;
 
-	@ManyToOne
-	@JoinColumn(name = "role")
-	private Role role;
-	
-	public Account(int id) {
-		this.id = id;
-	}
+    @ManyToOne
+    @JoinColumn(name = "role")
+    private Role role;
+
+    public Account(int id) {
+        this.id = id;
+    }
 }

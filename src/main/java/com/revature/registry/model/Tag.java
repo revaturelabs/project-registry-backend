@@ -9,11 +9,11 @@ import lombok.Data;
 @Entity
 @Data
 public class Tag {
-	@Id
-	@GeneratedValue
-	private int id;
-	
-	private String name;
-	private String description;
+    @Id
+    @GeneratedValue
+    private int id;
+
+    private String name;
+    private String description;
 
 }

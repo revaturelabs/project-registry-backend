@@ -14,16 +14,15 @@ import lombok.Data;
 @Data
 public class Iteration {
 
-	@Id
-	@GeneratedValue
-	private int id;
-		
-	private int iterationCount;
-	private LocalDate start_date;
-	private LocalDate end_date;
+    @Id
+    @GeneratedValue
+    private int id;
 
-	
-	@ManyToOne
-	@JoinColumn(name = "project_id")
-	private Project project;
+    private int iterationCount;
+    private LocalDate startDate;
+    private LocalDate endDate;
+
+    @ManyToOne
+    @JoinColumn(name = "project_id")
+    private Project project;
 }
