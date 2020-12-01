@@ -19,6 +19,12 @@
 		<java.version>8</java.version>
 		<checkstyle-maven-plugin.version>3.1.1</checkstyle-maven-plugin.version>
 		<puppycrawl-checkstyle.version>8.29</puppycrawl-checkstyle.version>
+		<coverage.reports.dir>target/coverage-reports</coverage.reports.dir>
+		<sonar.coverage.jacoco.xmlReportPaths>target/coverage-reports/jacoco.xml</sonar.coverage.jacoco.xmlReportPaths>
+		<sonar.projectKey>revaturelabs_project-registry-backend</sonar.projectKey>
+		<sonar.organization>revaturelabs-screenforce</sonar.organization>
+		<sonar.host.url>https://sonarcloud.io</sonar.host.url>
+		<sonar.exclusions>src/**/model/**/*</sonar.exclusions>
 	</properties>
 
 	<dependencies>
@@ -60,10 +66,17 @@
 	</dependencies>
 
 	<build>
+		<finalName>app</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+				<!-- This configuration is needed for the Dockerfile's builder pattern -->
+				<configuration>
+					<layers>
+						<enabled>true</enabled>
+					</layers>
+				</configuration>
 			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
@@ -98,21 +111,48 @@
 					</dependency>
 				</dependencies>
 			</plugin>
+
+			<!-- Code Coverage Report Generation -->
+			<plugin>
+				<groupId>org.jacoco</groupId>
+				<artifactId>jacoco-maven-plugin</artifactId>
+				<version>0.8.4</version>
+				<configuration>
+					<outputDirectory>${coverage.reports.dir}</outputDirectory>
+					<excludes>
+						<exclude>/model/</exclude>
+					</excludes>
+				</configuration>
+				<executions>
+					<execution>
+						<goals>
+							<goal>prepare-agent</goal>
+						</goals>
+					</execution>
+					<execution>
+						<id>report</id>
+						<phase>test</phase>
+						<goals>
+							<goal>report</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
 		</plugins>
 	</build>
-	
+
 	<reporting>
-        <!-- (Optional) Reporting for Checkstyle -->
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-checkstyle-plugin</artifactId>
-                <version>${checkstyle-maven-plugin.version}</version>
-                <configuration>
-                    <configLocation>rev_checks.xml</configLocation>
-                </configuration>
-            </plugin>
-        </plugins>
-    </reporting>
+		<!-- (Optional) Reporting for Checkstyle -->
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-checkstyle-plugin</artifactId>
+				<version>${checkstyle-maven-plugin.version}</version>
+				<configuration>
+					<configLocation>rev_checks.xml</configLocation>
+				</configuration>
+			</plugin>
+		</plugins>
+	</reporting>
 
 </project>

@@ -1,0 +1,76 @@
+name: CI/CD
+on:
+  push:
+    branches:
+      - main
+      - dev
+  pull_request:
+    types: [opened, synchronize, reopened]
+env:
+  APP_NAME: ${{ secrets.APP_NAME }}
+  AWS_REGION: ${{ secrets.AWS_REGION }}
+  CLUSTER_NAME: ${{ secrets.CLUSTER_NAME }}
+  ECR_REGISTRY: ${{ secrets.ECR_REGISTRY }}
+  ECR_REPOSITORY: ${{ secrets.ECR_REPOSITORY }}
+  IMAGE_TAG: ${{ github.sha }}
+jobs:
+  analyze:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
+      - uses: actions/setup-java@v1
+        with:
+          java-version: 11
+      - name: Cache SonarCloud packages
+        uses: actions/cache@v1
+        with:
+          path: ~/.sonar/cache
+          key: ${{ runner.os }}-sonar
+          restore-keys: ${{ runner.os }}-sonar
+      - name: Cache Maven packages
+        uses: actions/cache@v1
+        with:
+          path: ~/.m2
+          key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
+          restore-keys: ${{ runner.os }}-m2
+      - name: Build and analyze
+        run: mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+  build:
+    needs: [analyze]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.ECR_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.ECR_SECRET_ACCESS_KEY }}
+          aws-region: ${{ secrets.AWS_REGION }}
+      - name: Login to Amazon ECR
+        id: login-ecr
+        uses: aws-actions/amazon-ecr-login@v1
+      - name: Build the image
+        id: docker-build
+        run: |
+          docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
+          docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+          docker tag $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG $ECR_REGISTRY/$ECR_REPOSITORY:latest
+          docker push $ECR_REGISTRY/$ECR_REPOSITORY:latest
+  deploy:
+    needs: [build]
+    name: Deploy on EKS
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy to EKS
+        run: |
+          aws configure set aws_access_key_id $EKS_ACCESS_KEY_ID --profile p3
+          aws configure set aws_secret_access_key $EKS_SECRET_ACCESS_KEY --profile p3
+          aws configure set default.region $AWS_REGION --profile p3
+          aws eks --region $AWS_REGION update-kubeconfig --profile p3 --name $CLUSTER_NAME
+          kubectl --namespace default set image deploy/$APP_NAME-deployment $APP_NAME=$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+          kubectl --namespace default rollout status deploy/$APP_NAME-deployment

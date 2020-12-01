@@ -53,7 +53,7 @@ class ProjectControllerTest {
     }
 
     @Test
-    public void getAllProjectsReturnsData() throws Exception {
+    void getAllProjectsReturnsData() throws Exception {
 
         // mock the return of getAllProjects from ProjectService
 
@@ -82,7 +82,7 @@ class ProjectControllerTest {
     }
 
     @Test
-    public void should_get_appropriate_project_when_12isInput() throws Exception {
+    void should_get_appropriate_project_when_12isInput() throws Exception {
 
         // mock the return of getProjectById from ProjectService
         Project project = new Project();
@@ -100,7 +100,7 @@ class ProjectControllerTest {
     }
 
     @Test
-    public void should_create_project_when_valid_input() throws Exception {
+    void should_create_project_when_valid_input() throws Exception {
         // mock the return of createProject from ProjectService
         Project project = new Project();
         project.setId(12);
@@ -119,7 +119,7 @@ class ProjectControllerTest {
     }
 
     @Test
-    public void should_update_poject_when_valid_input() throws JsonProcessingException, Exception {
+    void should_update_poject_when_valid_input() throws JsonProcessingException, Exception {
         // mock the return of updateProject from ProjectService
         Project project = new Project();
         project.setId(12);
@@ -138,7 +138,7 @@ class ProjectControllerTest {
     }
 
     @Test
-    public void should_return_no_content_when_delete_isCalled() throws Exception {
+    void should_return_no_content_when_delete_isCalled() throws Exception {
         // mock the return of updateProject from ProjectService
         when(projectService.deleteProjectById(anyInt())).thenReturn(new ResponseEntity<Project>(HttpStatus.NO_CONTENT));
         // mock request to controller
