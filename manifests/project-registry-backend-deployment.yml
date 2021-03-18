@@ -21,12 +21,22 @@ spec:
         - containerPort: 8080
         livenessProbe:
           httpGet:
-            path: /api/project
+            path: /api/project/actuator/health/liveness
             port: 8080
+            failureThreshold: 6 # 6 checks -> 1 minute of allowed downtime before restarting
+            periodSeconds: 10
         startupProbe:
           httpGet:
-            path: /api/project
+            path: /api/project/actuator/health/readiness
             port: 8080
+            failureThreshold: 18 # 18 checks -> 3 minutes for worst-case ready time
+            periodSeconds: 10 # 10 seconds between checks
+        readinessProbe:
+          httpGet:
+            path: /api/project/actuator/health/readiness
+            port: 8080
+            failureThreshold: 6 # 6 checks -> 1 minute of allowed downtime before restarting
+            periodSeconds: 10
       dnsPolicy: ClusterFirst
       restartPolicy: Always
       terminationGracePeriodSeconds: 30
