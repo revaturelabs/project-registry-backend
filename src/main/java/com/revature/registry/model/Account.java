@@ -7,9 +7,18 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+/**
+ *  An {@link Account} is the user account associated with Project Registry.
+ *
+ *  An {@link Account} is simply a container of a username and a {@link Role}, and is used to correspond with either a
+ *  {@link Project}, if the {@link Account} has a {@link Role} of type `ROLE_PRODUCT_OWNER`, or is corresponded with an
+ *  {@link Iteration}, if the {@link Account} has a {@link Role} of type `ROLE_TRAINER`.
+ */
 
 @Entity
 @AllArgsConstructor
@@ -23,8 +32,11 @@ public class Account {
 
     private String username;
 
+    @JsonIgnore
+    private String password;
+
     @ManyToOne
-    @JoinColumn(name = "role")
+    @JoinColumn(name = "role_id")
     private Role role;
 
     public Account(int id) {
