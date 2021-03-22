@@ -16,10 +16,7 @@ insert into status(name) values ('NEEDS_CLEANUP');
 insert into status(name) values ('READY_FOR_ITERATION');
 
 -- insert projects
-insert into project(description, name, created_by, status) values('rideforce project', 'rideforce', 3, 3);
-
--- insert into project_account_jt
-insert into project_account_jt(project_id, account_id) values(1,3);
+insert into project(description, name, owner, status) values('rideforce project', 'rideforce', 3, 3);
 
 -- insert phase
 insert into phase (kind, description) values ('BACKLOG_GENERATED', 'CoE has completed the iterations backlog, awaiting trainer approval');

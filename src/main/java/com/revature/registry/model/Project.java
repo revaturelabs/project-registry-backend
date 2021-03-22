@@ -44,8 +44,8 @@ public class Project {
     private String description;
 
     @ManyToOne
-    @JoinColumn(name = "created_by")
-    private Account createdBy;
+    @JoinColumn(name = "owner")
+    private Account owner;
 
     @LazyCollection(LazyCollectionOption.FALSE)
     @ManyToMany()
