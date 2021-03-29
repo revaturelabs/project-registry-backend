@@ -9,6 +9,10 @@ import javax.persistence.ManyToOne;
 
 import lombok.Data;
 
+/**
+ * A {@link Repository} refers to a Github Repository belonging to an {@link Organization}.
+ */
+
 @Entity
 @Data
 public class Repository {
@@ -17,10 +21,11 @@ public class Repository {
     private int id;
 
     private String name;
+
     private String url;
 
     @ManyToOne
-    @JoinColumn(name = "project")
-    private Project project;
+    @JoinColumn(name = "organization_id")
+    private Organization organization;
 
 }

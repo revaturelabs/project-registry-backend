@@ -11,6 +11,13 @@ import javax.persistence.ManyToOne;
 
 import lombok.Data;
 
+/**
+ * An {@link Iteration} is a batch's iteration with a {@link Project}, bound by the startDate and endDate.
+ *
+ * No two {@link Iteration}'s on a {@link Project} should have intersecting startDate/endDate, as this is a violation
+ * of business rules.
+ */
+
 @Entity
 @Data
 public class Iteration {
@@ -19,9 +26,11 @@ public class Iteration {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    private int iterationCount;
     private LocalDate startDate;
+
     private LocalDate endDate;
+
+    private String batchId;
 
     @ManyToOne
     @JoinColumn(name = "project_id")
