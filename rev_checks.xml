@@ -30,15 +30,15 @@
         </module>
 
         <!-- Rule 1.2.c and 1.2.d: Import Order -->
-        <module name="CustomImportOrder">
-            <property name="customImportOrderRules"
-                      value="STATIC###STANDARD_JAVA_PACKAGE###SPECIAL_IMPORTS"/>
-            <property name="specialImportsRegExp" value="^[com\.revature|com\.revaturelabs]+$"/>
-            <property name="sortImportsInGroupAlphabetically" value="true"/>
-            <property name="separateLineBetweenGroups" value="true"/>
+        <module name="ImportOrder">
+            <property name="groups" value="/^java\./,javax,lombok,/^com\./,/^org\./,"/>
+            <property name="ordered" value="true"/>
+            <property name="separated" value="true"/>
+            <property name="option" value="top"/>
+            <property name="sortStaticImportsAlphabetically" value="true"/>
         </module>
         <module name="AvoidStarImport">
-            <property name="excludes" value="org.junit,org.hamcrest,java.lang,java.util"/>
+            <property name="excludes" value="org.junit,org.hamcrest,java.lang,java.util,org.mockito.Mockito"/>
         </module>
 
         <!-- Rule 1.3.f: hashCode and equals implemented -->
@@ -56,7 +56,14 @@
 
         <!-- Rule 3.2: Camel Case Naming Convention for Method, Method Argument, non-final variables, non-static variables -->
         <module name="MethodName">
+            <property name="id" value="MethodNameRegular"/>
             <property name="format" value="^[a-z][a-z0-9][a-zA-Z0-9]*$"/>
+            <message key="name.invalidPattern"
+                     value="Member name ''{0}'' must match pattern ''{1}''."/>
+        </module>
+        <module name="MethodName">
+            <property name="id" value="MethodNameTest"/>
+            <property name="format" value="(^[a-z][a-z0-9][a-zA-Z0-9]*$)|(^[a-z][a-zA-Z0-9\_]*$)"/>
             <message key="name.invalidPattern"
                      value="Member name ''{0}'' must match pattern ''{1}''."/>
         </module>
@@ -197,5 +204,11 @@
         <!-- Ensures modifiers follow the Java Language Spec -->
         <!-- https://docs.oracle.com/javase/specs/jls/se8/html/jls-8.html -->
         <module name="ModifierOrder"/>
+    </module>
+    
+    <!-- Suppression Filter -->
+    <module name="SuppressionFilter">
+        <property name="file" value="${checkstyle.config.path}/suppressions.xml"/>
+        <property name="optional" value="false" />
     </module>
 </module>

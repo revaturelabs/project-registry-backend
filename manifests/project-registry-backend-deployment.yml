@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: project-registry-backend-deployment
+  labels:
+    app: project-registry-backend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: project-registry-backend
+  template:
+    metadata:
+      labels:
+        app: project-registry-backend
+    spec:
+      containers:
+      - name: project-registry-backend
+        image: project-registry-backend:latest
+        ports:
+        - containerPort: 8080
+        livenessProbe:
+          httpGet:
+            path: /api/project/actuator/health/liveness
+            port: 8080
+            failureThreshold: 6 # 6 checks -> 1 minute of allowed downtime before restarting
+            periodSeconds: 10
+        startupProbe:
+          httpGet:
+            path: /api/project/actuator/health/readiness
+            port: 8080
+            failureThreshold: 18 # 18 checks -> 3 minutes for worst-case ready time
+            periodSeconds: 10 # 10 seconds between checks
+        readinessProbe:
+          httpGet:
+            path: /api/project/actuator/health/readiness
+            port: 8080
+            failureThreshold: 6 # 6 checks -> 1 minute of allowed downtime before restarting
+            periodSeconds: 10
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+      terminationGracePeriodSeconds: 30
