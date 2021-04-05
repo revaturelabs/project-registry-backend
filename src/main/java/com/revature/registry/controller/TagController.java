@@ -30,12 +30,12 @@ public class TagController {
     }
     
     @PostMapping("")
-    public ResponseEntity<String> createProject(@RequestBody Tag tag) {
+    public ResponseEntity<String> createTag(@RequestBody Tag tag) {
         return tagService.createTag(tag);
     }
     
     @GetMapping("/id/{id}")
-    public ResponseEntity<Tag> getProjectById(@PathVariable("id") int id) {
+    public ResponseEntity<Tag> getTagById(@PathVariable("id") int id) {
         return tagService.getTagById(id);
     }
     
