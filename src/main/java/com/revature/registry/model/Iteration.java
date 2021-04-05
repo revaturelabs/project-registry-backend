@@ -9,7 +9,9 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 /**
  * An {@link Iteration} is a batch's iteration with a {@link Project}, bound by the startDate and endDate.
@@ -17,9 +19,10 @@ import lombok.Data;
  * No two {@link Iteration}'s on a {@link Project} should have intersecting startDate/endDate, as this is a violation
  * of business rules.
  */
-
-@Entity
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Entity
 public class Iteration {
 
     @Id
