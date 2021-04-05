@@ -27,3 +27,13 @@ insert into phase (kind, description) values ('CHECKPOINT_MEETING', 'Progress me
 insert into phase (kind, description) values ('CODE_REVIEW', 'Code Review of work completed in Iteration has commenced');
 insert into phase (kind, description) values ('COMPLETE', 'Iteration has completed, ready to merge into upstream');
 
+-- insert tags
+insert into tag (name, description) values ('Angular', 'This project used an Angular Frontend');
+insert into tag (name, description) values ('React', 'This project used a React Frontend');
+insert into tag (name, description) values ('JDBC', 'Uses JDBC to connect to the DB');
+insert into tag (name, description) values ('AWS RDS', 'This project used a React Frontend');
+insert into tag (name, description) values ('REST', 'This project used a React Frontend');
+insert into tag (name, description) values ('SpringMVC', 'This project used a React Frontend');
+insert into tag (name, description) values ('SPRING ORM', 'This project used a React Frontend');
+insert into tag (name, description) values ('GIT', 'This project used a React Frontend');
+
