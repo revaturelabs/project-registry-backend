@@ -14,6 +14,9 @@ insert into status(name) values ('CODE_FREEZE');
 insert into status(name) values ('CODE_REVIEW');
 insert into status(name) values ('NEEDS_CLEANUP');
 insert into status(name) values ('READY_FOR_ITERATION');
+insert into status(name) values ('ACTIVE');
+insert into status(name) values ('NEEDS_ATTENTION');
+insert into status(name) values ('ARCHIVE');
 
 -- insert projects
 insert into project(description, name, owner, status) values('rideforce project', 'rideforce', 3, 3);
