@@ -39,4 +39,3 @@ insert into tag (name, description) values ('REST', 'This project used a React F
 insert into tag (name, description) values ('SpringMVC', 'This project used a React Frontend');
 insert into tag (name, description) values ('SPRING ORM', 'This project used a React Frontend');
 insert into tag (name, description) values ('GIT', 'This project used a React Frontend');
-
