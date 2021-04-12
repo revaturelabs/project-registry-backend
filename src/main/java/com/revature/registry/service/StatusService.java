@@ -22,7 +22,7 @@ public class StatusService {
 
 
     public ResponseEntity<List<Status>> getAllStatuses() {
-        log.debug("Getting all Statuses");
+        log.debug("Getting all statuses");
         return ResponseEntity.ok(statusRepository.findAll());
     }
     
