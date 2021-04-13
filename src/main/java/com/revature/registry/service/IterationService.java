@@ -9,6 +9,7 @@ import lombok.extern.slf4j.Slf4j;
 import com.revature.registry.model.Iteration;
 import com.revature.registry.repository.IterationRepository;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -24,14 +25,14 @@ public class IterationService {
 private IterationRepository iterationRepository;
 
 public ResponseEntity<List<Iteration>> getAllIterations() {
-log.debug("Fetching all iterations: {}", iterationRepository.findAll());
+
 return ResponseEntity.ok(iterationRepository.findAll());
 }
 
 public ResponseEntity<Iteration> getIterationById(int id) {
     Optional<Iteration> iteration = iterationRepository.findById(id);
     if (iteration.isPresent()) {
-        log.debug("Fetching Iteration with id of {}: {}", iteration.get());
+
         return ResponseEntity.ok(iteration.get());
     }
     log.error("Unable to GET. Iteration with id {} not found.", id);
@@ -40,7 +41,7 @@ public ResponseEntity<Iteration> getIterationById(int id) {
 
 public ResponseEntity<Iteration> createIteration(Iteration iteration) {
     Iteration savedIteration = iterationRepository.save(iteration);
-    log.debug("Iteration created with the following properties: {}", savedIteration);
+
     String location = String.format("/api/iteration/%s", savedIteration.getId());
     return ResponseEntity.created(URI.create(location)).body(savedIteration);
 }

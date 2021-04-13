@@ -7,7 +7,6 @@ import java.util.Optional;
 import lombok.extern.slf4j.Slf4j;
 
 import com.revature.registry.model.Tag;
-import com.revature.registry.model.Tag;
 import com.revature.registry.repository.TagRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,7 +44,7 @@ public class TagService {
         Tag savedTag = tagRepository.save(tag);
         log.debug("Tag created with the following properties: {}", savedTag);
         if ( savedTag.getId() != 0 ) {
-            return ResponseEntity.ok("Success");
+            return ResponseEntity.ok("\"Success\"");
         } else {
             return ResponseEntity.badRequest().build();
         }
