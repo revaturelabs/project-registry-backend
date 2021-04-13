@@ -48,11 +48,17 @@ public class Project {
     @ManyToOne
     @JoinColumn(name = "owner")
     private Account owner;
+    
+    @ManyToOne
+    @JoinColumn(name = "phase")
+    private Phase phase;
 
     @LazyCollection(LazyCollectionOption.FALSE)
     @ManyToMany()
     @JoinTable(name = "project_tags_jt", joinColumns = { @JoinColumn(name = "project_id") }, inverseJoinColumns = {
             @JoinColumn(name = "tag_id") })
     private List<Tag> tags;
+    
+
 
 }

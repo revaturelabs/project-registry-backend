@@ -18,9 +18,6 @@ insert into status(name) values ('ACTIVE');
 insert into status(name) values ('NEEDS_ATTENTION');
 insert into status(name) values ('ARCHIVED');
 
--- insert projects
-insert into project(description, name, owner, status) values('rideforce project', 'rideforce', 3, 3);
-
 -- insert phase
 insert into phase (kind, description) values ('BACKLOG_GENERATED', 'CoE has completed the iterations backlog, awaiting trainer approval');
 insert into phase (kind, description) values ('TRAINER_APPROVED', 'Trainer has reviewed backlog and approves of scope and domain');
@@ -34,17 +31,13 @@ insert into phase (kind, description) values ('COMPLETE', 'Iteration has complet
 insert into tag (name, description) values ('Angular', 'This project used an Angular Frontend');
 insert into tag (name, description) values ('React', 'This project used a React Frontend');
 insert into tag (name, description) values ('JDBC', 'Uses JDBC to connect to the DB');
-<<<<<<< HEAD
 insert into tag (name, description) values ('AWS RDS', 'This project used a React Frontend');
 insert into tag (name, description) values ('REST', 'This project used a React Frontend');
 insert into tag (name, description) values ('SpringMVC', 'This project used a React Frontend');
 insert into tag (name, description) values ('SPRING ORM', 'This project used a React Frontend');
 insert into tag (name, description) values ('GIT', 'This project used a React Frontend');
-=======
-insert into tag (name, description) values ('AWS RDS', 'This project used AWS RDS');
-insert into tag (name, description) values ('REST', 'This project used REST');
-insert into tag (name, description) values ('SpringMVC', 'This project used Spring MVC');
-insert into tag (name, description) values ('Spring ORM', 'This project used Spring ORM');
-insert into tag (name, description) values ('GIT', 'This project used GIT');
 
->>>>>>> 92260927eb7de5f05ad7247cc973c551c9cbfe62
+-- insert projects
+insert into project(description, name, owner, status, phase) values('rideforce project', 'rideforce', 3, 3, 2);
+
+
