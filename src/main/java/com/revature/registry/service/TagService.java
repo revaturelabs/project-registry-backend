@@ -45,7 +45,7 @@ public class TagService {
         Tag savedTag = tagRepository.save(tag);
         log.debug("Tag created with the following properties: {}", savedTag);
         if ( savedTag.getId() != 0 ) {
-            return ResponseEntity.ok("Success");
+            return ResponseEntity.ok("\"Success\"");
         } else {
             return ResponseEntity.badRequest().build();
         }
