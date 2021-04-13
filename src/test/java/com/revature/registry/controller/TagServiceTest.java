@@ -91,7 +91,7 @@ public class TagServiceTest {
         tag.setName("Tester tag");
         tag.setDescription("My purpose is to exist");
 
-        ResponseEntity<String> expected = new ResponseEntity<String>("Success", HttpStatus.OK);
+        ResponseEntity<String> expected = new ResponseEntity<String>("\"Success\"", HttpStatus.OK);
 
         when(tagRepository.save(any(Tag.class))).thenReturn(tag);
 
