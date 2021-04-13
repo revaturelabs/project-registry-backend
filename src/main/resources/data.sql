@@ -34,9 +34,9 @@ insert into phase (kind, description) values ('COMPLETE', 'Iteration has complet
 insert into tag (name, description) values ('Angular', 'This project used an Angular Frontend');
 insert into tag (name, description) values ('React', 'This project used a React Frontend');
 insert into tag (name, description) values ('JDBC', 'Uses JDBC to connect to the DB');
-insert into tag (name, description) values ('AWS RDS', 'This project used a React Frontend');
-insert into tag (name, description) values ('REST', 'This project used a React Frontend');
-insert into tag (name, description) values ('SpringMVC', 'This project used a React Frontend');
-insert into tag (name, description) values ('SPRING ORM', 'This project used a React Frontend');
-insert into tag (name, description) values ('GIT', 'This project used a React Frontend');
+insert into tag (name, description) values ('AWS RDS', 'This project used AWS RDS');
+insert into tag (name, description) values ('REST', 'This project used REST');
+insert into tag (name, description) values ('SpringMVC', 'This project used Spring MVC');
+insert into tag (name, description) values ('Spring ORM', 'This project used Spring ORM');
+insert into tag (name, description) values ('GIT', 'This project used GIT');
 
