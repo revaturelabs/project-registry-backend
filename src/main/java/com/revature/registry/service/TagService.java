@@ -7,7 +7,6 @@ import java.util.Optional;
 import lombok.extern.slf4j.Slf4j;
 
 import com.revature.registry.model.Tag;
-import com.revature.registry.model.Tag;
 import com.revature.registry.repository.TagRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
