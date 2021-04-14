@@ -4,19 +4,16 @@ import java.net.URI;
 import java.util.List;
 import java.util.Optional;
 
-import lombok.extern.slf4j.Slf4j;
 
 import com.revature.registry.model.Project;
 import com.revature.registry.repository.ProjectRepository;
 
-import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 @Service
-@Slf4j
 public class ProjectService {
     private static Logger log = Logger.getLogger(ProjectService.class);
     

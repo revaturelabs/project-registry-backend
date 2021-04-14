@@ -3,7 +3,6 @@ package com.revature.registry.service;
 import java.util.List;
 import java.util.Optional;
 
-import lombok.extern.slf4j.Slf4j;
 
 import com.revature.registry.model.Status;
 import com.revature.registry.repository.StatusRepository;
@@ -15,7 +14,6 @@ import org.springframework.stereotype.Service;
 
 
 @Service
-@Slf4j
 public class StatusService {
     private static Logger log = Logger.getLogger(StatusService.class);
 
