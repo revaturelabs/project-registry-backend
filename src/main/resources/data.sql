@@ -34,5 +34,5 @@ insert into tag (name, description) values ('Spring ORM', 'This project used Spr
 insert into tag (name, description) values ('GIT', 'This project used GIT');
 -- insert projects
 insert into project(description, name, owner, status, phase) values('rideforce project', 'rideforce', 3, 3, 2);
-insert into project(description, name, owner, status, phase) values('Timmies project', 'Timmy', 1, 2, 3);
-insert into project(description, name, owner, status, phase) values('Running for mayor', 'Operation Mayor', 4, 3, 2);
+insert into project(description, name, owner, status, phase) values('Finds potential condadites by scrapping facebook.', 'Make A Recruiting Application', 1, 2, 3);
+insert into project(description, name, owner, status, phase) values('An application that will help individuals find rides in their area.', 'Find a ride', 4, 3, 2);
