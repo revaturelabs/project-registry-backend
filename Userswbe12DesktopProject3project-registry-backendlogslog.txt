@@ -1,0 +1,2 @@
+2021-04-14 11:18:57 DEBUG TagService:29 - Getting all tags
+2021-04-14 11:23:48 DEBUG TagService:29 - Getting all tags

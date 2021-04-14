@@ -9,7 +9,7 @@ import lombok.extern.slf4j.Slf4j;
 import com.revature.registry.model.Iteration;
 import com.revature.registry.repository.IterationRepository;
 
-
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -21,6 +21,8 @@ import org.springframework.stereotype.Service;
 @Service
 @Slf4j
 public class IterationService {
+    private static Logger log = Logger.getLogger(IterationService.class);
+    
 @Autowired
 private IterationRepository iterationRepository;
 
@@ -35,7 +37,7 @@ public ResponseEntity<Iteration> getIterationById(int id) {
 
         return ResponseEntity.ok(iteration.get());
     }
-    log.error("Unable to GET. Iteration with id {} not found.", id);
+    log.error("Unable to GET. Iteration with id " + id);
     return ResponseEntity.badRequest().build();
 }
 
@@ -51,11 +53,11 @@ public ResponseEntity<Iteration> updateIterationById(int id, Iteration newIterat
     if (iteration.isPresent()) {
         newIteration.setId(id);
         iterationRepository.save(newIteration);
-        log.debug("Iteration with id: {}. Updated with the following properties: {}", id, newIteration);
+        log.debug("Iteration with id: " + id + " Updated with the following properties: " + newIteration );
         return ResponseEntity.ok(iteration.get());
     }
 
-    log.error("Unable to update. Iteration with id {} not found.", id);
+    log.error("Unable to update. Iteration with id " + id + " not found.");
     return ResponseEntity.badRequest().build();
 }
 
@@ -63,10 +65,10 @@ public ResponseEntity<Iteration> deleteIterationById(int id) {
     Optional<Iteration> iteration = iterationRepository.findById(id);
     if (iteration.isPresent()) {
         iterationRepository.deleteById(id);
-        log.debug("Iteration Deleted with id: {}", id);
+        log.debug("Iteration Deleted with id: " + id);
         return ResponseEntity.noContent().build();
     }
-    log.error("Unable to DELETE. Iteration with id {} not found.", id);
+    log.error("Unable to DELETE. Iteration with id:" + id + " not found.");
     return ResponseEntity.badRequest().build();
 }
 

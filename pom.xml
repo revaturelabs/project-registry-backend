@@ -25,9 +25,16 @@
 		<sonar.organization>revaturelabs-screenforce</sonar.organization>
 		<sonar.host.url>https://sonarcloud.io</sonar.host.url>
 		<sonar.exclusions>src/**/model/**/*</sonar.exclusions>
+        <log4j.configuration>log4j.properties</log4j.configuration>
 	</properties>
 
 	<dependencies>
+	
+	<dependency>
+            <groupId>log4j</groupId>
+            <artifactId>log4j</artifactId>
+            <version>1.2.17</version>
+        </dependency>
 	
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
