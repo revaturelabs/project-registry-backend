@@ -8,6 +8,7 @@ import lombok.extern.slf4j.Slf4j;
 import com.revature.registry.model.Status;
 import com.revature.registry.repository.StatusRepository;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -16,6 +17,7 @@ import org.springframework.stereotype.Service;
 @Service
 @Slf4j
 public class StatusService {
+    private static Logger log = Logger.getLogger(StatusService.class);
 
     @Autowired
     private StatusRepository statusRepository;
@@ -30,10 +32,10 @@ public class StatusService {
         log.debug("Getting status by Id");
         Optional<Status> status = statusRepository.findById(id);
         if (status.isPresent()) {
-            log.debug("Fetching Status with id of {}: {}", status.get());
+            log.debug("Fetching Status with id of " + id);
             return ResponseEntity.ok(status.get());
         }
-        log.error("Unable to GET. status with id {} not found.", id);
+        log.error("Unable to GET. status with id " + id + " not found");
         return ResponseEntity.badRequest().build();
     }
 }

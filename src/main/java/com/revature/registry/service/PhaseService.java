@@ -8,6 +8,7 @@ import lombok.extern.slf4j.Slf4j;
 import com.revature.registry.model.Phase;
 import com.revature.registry.repository.PhaseRepository;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -18,6 +19,7 @@ import org.springframework.stereotype.Service;
 @Service
 @Slf4j
 public class PhaseService {
+    private static Logger log = Logger.getLogger(PhaseService.class);
 
 @Autowired
 private PhaseRepository phaseRepository;
@@ -33,7 +35,7 @@ public ResponseEntity<Phase> getPhaseById(int id) {
 
         return ResponseEntity.ok(phase.get());
     }
-    log.error("Unable to GET. Iteration with id {} not found.", id);
+    log.error("Unable to GET. Iteration with id " + id + " not found.");
     return ResponseEntity.badRequest().build();
 }
 }

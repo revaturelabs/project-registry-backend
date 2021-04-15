@@ -27,11 +27,11 @@ insert into phase (kind, description) values ('COMPLETE', 'Iteration has complet
 insert into tag (name, description) values ('Angular', 'This project used an Angular Frontend');
 insert into tag (name, description) values ('React', 'This project used a React Frontend');
 insert into tag (name, description) values ('JDBC', 'Uses JDBC to connect to the DB');
-insert into tag (name, description) values ('AWS RDS', 'This project used AWS RDS');
-insert into tag (name, description) values ('REST', 'This project used REST');
-insert into tag (name, description) values ('Spring MVC', 'This project used Spring MVC');
-insert into tag (name, description) values ('Spring ORM', 'This project used Spring ORM');
-insert into tag (name, description) values ('GIT', 'This project used GIT');
+insert into tag (name, description) values ('AWS RDS', 'This project used AWS RDS for the database');
+insert into tag (name, description) values ('REST', 'This project is a RESTful service');
+insert into tag (name, description) values ('SpringMVC', 'This project used MVC for servlets');
+insert into tag (name, description) values ('SPRING ORM', 'This project used Spring ORM for tables');
+insert into tag (name, description) values ('GIT', 'This project used a GIT REPO');
 -- insert projects
 insert into project(description, name, owner, status, phase) values('rideforce project', 'rideforce', 3, 3, 2);
 insert into project(description, name, owner, status, phase) values('Finds potential condadites by scrapping facebook.', 'Make A Recruiting Application', 1, 2, 3);
