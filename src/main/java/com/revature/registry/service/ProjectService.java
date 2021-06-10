@@ -7,6 +7,7 @@ import java.util.Optional;
 import lombok.extern.slf4j.Slf4j;
 
 import com.revature.registry.model.Project;
+import com.revature.registry.model.Status;
 import com.revature.registry.repository.ProjectRepository;
 
 import org.apache.log4j.Level;
@@ -26,7 +27,7 @@ public class ProjectService {
 
     public ResponseEntity<List<Project>> getAllProjects() {
  //       log.setLevel(Level.DEBUG); if Logger is not working, use setLevel
-        log.debug("Fetching all products: " + projectRepository.findAll());
+        log.debug("Fetching all projects: " + projectRepository.findAll());
         return ResponseEntity.ok(projectRepository.findAll());
     }
 
@@ -69,6 +70,13 @@ public class ProjectService {
         }
         log.error("Unable to DELETE. User with id " + id);
         return ResponseEntity.badRequest().build();
+    }
+    
+    public ResponseEntity<List<Project>> getAllActiveProjects(int statusId) {
+        Status s = new Status();
+        s.setId(statusId);
+        log.debug("Fetching all active projects: " + projectRepository.getProjectByStatus(s));
+        return ResponseEntity.ok(projectRepository.getProjectByStatus(s));
     }
 
 }

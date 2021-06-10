@@ -49,4 +49,9 @@ public class ProjectController {
     public ResponseEntity<Project> deleteUser(@PathVariable("id") int id) {
         return projectService.deleteProjectById(id);
     }
+    
+    @GetMapping("/status/{status}")
+    public ResponseEntity<List<Project>> getAllActiveProjects(@PathVariable("status") int status) {
+        return projectService.getAllActiveProjects(status);
+    }
 }
