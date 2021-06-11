@@ -1,5 +1,5 @@
 # project-registry-backend
-Spring backend for Project Registry
+Spring backend for Project Registry 
 
 # Configuration for Checkstyle Plugin
 
