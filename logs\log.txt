@@ -1,0 +1,7 @@
+2021-06-11 13:31:21 INFO  TagService:29 - Getting all tags
+2021-06-11 13:34:26 INFO  TagService:29 - Getting all tags
+2021-06-11 13:37:14 INFO  TagService:29 - Getting all tags
+2021-06-11 13:37:15 DEBUG StatusService:27 - Getting all statuses
+2021-06-11 13:37:20 DEBUG StatusService:27 - Getting all statuses
+2021-06-11 13:37:50 DEBUG StatusService:27 - Getting all statuses
+2021-06-11 13:38:00 DEBUG StatusService:27 - Getting all statuses
